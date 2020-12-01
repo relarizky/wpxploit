@@ -41,7 +41,7 @@ class XmlrpcRequester:
 
     def __init__(self, url: str, timeout: int = 10):
         self.url = url
-        self.timeout = 10
+        self.timeout = timeout
 
     # Protected Method
     # Should not be accessed outside the class
