@@ -85,8 +85,8 @@ def connection_check(func):
 
 @banner
 def help():
-    print("[+] Usage\t: {} <url> <thread>".format(argv[0]))
-    print("[+] Examlple\t: {} http://target.com/ 5".format(argv[0]))
+    print("[+] Usage\t: {} <url> <thread> <timeout>".format(argv[0]))
+    print("[+] Examlple\t: {} http://target.com/ 5 15".format(argv[0]))
     exit(0)
 
 
