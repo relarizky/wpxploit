@@ -4,5 +4,5 @@ python:
         - 3.7.5
 
 script:
-        - pip3 install tqdm
+        - pip3 install -r requirements.txt
         - python3 exploit.py
