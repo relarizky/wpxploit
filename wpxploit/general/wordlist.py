@@ -30,53 +30,6 @@ import os
 from wpxploit.general.interface import current_time
 
 
-class WordList:
-    """ wordlist reader class"""
-
-    def __init__(self, file_name: str, thread_size: int):
-        self.name = file_name
-        self.size = thread_size
-
-    def __exit__(self, type, value, traceback):
-        if type is not None:
-            if type is FileNotFoundError:
-                print(current_time(), "please input only existing file!")
-
-        self.file_object.close()
-
-        return True
-
-    def __enter__(self):
-        self.file_object = open(self.name, "r", encoding="latin1")
-
-        return self
-
-    def create_chunk(self):
-        words = self.file_object
-        chunk = []
-        chunk_size = words.readlines().__len__() // self.size
-
-        # change stream position to the beginning of the file
-        words.seek(0)
-
-        while True:
-            word = []
-            stop = False
-
-            for size in range(chunk_size):
-                try:
-                    word.append(words.__next__().strip())
-                except StopIteration:
-                    stop = True
-                    break
-
-            chunk.append(word)
-            if stop is True:
-                break
-
-        return chunk.__iter__()
-
-
 def show_word_list():
 
     DIR = "wordlist/"  # default dir of wordlist
@@ -101,3 +54,28 @@ def show_word_list():
         os._exit(1)
 
     return list_file[user_input]
+
+
+def read_word_list(file_name: str, size: str) -> list:
+    """
+    generator for creating wordlist chunk
+    """
+
+    with open(file_name) as file:
+        word_char = file.readlines().__iter__()
+        word_size = word_char.__length_hint__() // size
+
+        # put the stream point in the beginning of the file
+        file.seek(0)
+
+        while word_char.__length_hint__() != 0:
+            chunk = []
+            stops = False
+            for word in range(word_size):
+                try:
+                    chunk.append(word_char.__next__().strip())
+                except StopIteration:
+                    stops = True
+                    break
+
+            yield chunk
