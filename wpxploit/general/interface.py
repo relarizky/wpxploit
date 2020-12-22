@@ -50,7 +50,7 @@ def banner(func):
         print("  \\ \\/  \\/ / |  ___/ > < | '_ \\| |/ _ \\| | __|")
         print("   \\  /\\  /  | |    / . \\| |_) | | (_) | | |_")
         print("    \\/  \\/   |_|   /_/ \\_\\ .__/|_|\\___/|_|\\__|")
-        print("                         | |     [Version 1.0]")
+        print("                         | |   [Version 1.0.0]")
         print("                         |_|\n")
         return func(*args)
     return banner
